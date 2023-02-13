@@ -4,17 +4,17 @@ class UserController {
   async store(req, res) {
     try {
       const novoUsuario = await User.create(req.body);
+      const { id, nome, email } = novoUsuario;
 
-      return res.status(200).json(novoUsuario);
+      return res.status(200).json({ id, nome, email });
     } catch (error) {
-      console.log(error);
-      return res.status(400).json(error.errors);
+      return res.status(400).json({ errors: error.errors.map((err) => err.message) });
     }
   }
 
   async index(req, res) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({ attributes: ['id', 'nome', 'email'] });
       return res.status(200).json(users);
     } catch (error) {
       return res.status(400).json(null);
@@ -23,9 +23,15 @@ class UserController {
 
   async show(req, res) {
     try {
-      const { id } = req.params;
-      const user = await User.findByPk(id);
-      return res.status(200).json(user);
+      const user = await User.findByPk(req.params.id);
+
+      if (!user) {
+        return res.status(404).json({ errors: ['Usuário não encontrado'] });
+      }
+
+      const { id, name, email } = user;
+
+      return res.status(200).json({ id, name, email });
     } catch (error) {
       return res.status(400).json({ errors: error.errors.map((err) => err.message) });
     }
@@ -33,7 +39,7 @@ class UserController {
 
   async update(req, res) {
     try {
-      const { id } = req.params;
+      const { id } = req.userId;
       if (!id) {
         return res.status(400).json({ errors: ['ID não informado'] });
       }
@@ -53,7 +59,7 @@ class UserController {
 
   async delete(req, res) {
     try {
-      const { id } = req.params;
+      const { id } = req.userId;
       if (!id) {
         return res.status(400).json({ errors: ['ID não informado'] });
       }
