@@ -17,5 +17,6 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'off',
     'no-param-reassign': 'off',
+    'no-empty-function': 'off',
   },
 };
