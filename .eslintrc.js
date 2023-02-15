@@ -18,5 +18,6 @@ module.exports = {
     'import/no-unresolved': 'off',
     'no-param-reassign': 'off',
     'no-empty-function': 'off',
+    'no-unused-vars': 'off',
   },
 };
