@@ -3,6 +3,7 @@ import './src/database';
 import dotenv from 'dotenv';
 import express from 'express';
 import alunoRoutes from './src/routes/alunoRoutes';
+import fotoRoutes from './src/routes/fotoRoutes';
 import homeRoutes from './src/routes/homeRoutes';
 import tokenRoutes from './src/routes/tokenRoutes';
 import userRoutes from './src/routes/userRoutes';
@@ -26,6 +27,7 @@ class App {
     this.app.use('/user', userRoutes);
     this.app.use('/tokens', tokenRoutes);
     this.app.use('/alunos', alunoRoutes);
+    this.app.use('/fotos', fotoRoutes);
   }
 }
 
