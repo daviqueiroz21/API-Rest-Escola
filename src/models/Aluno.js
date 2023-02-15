@@ -8,7 +8,7 @@ export default class Aluno extends Model {
           type: Sequelize.STRING,
           defaultValues: '',
           validate: {
-            length: {
+            len: {
               args: [3, 255],
               msg: 'O nome deve ter entre 3 e 255 caracteres',
             },
@@ -19,7 +19,7 @@ export default class Aluno extends Model {
           type: Sequelize.STRING,
           defaultValues: '',
           validate: {
-            length: {
+            len: {
               args: [3, 255],
               msg: 'O sobrenome deve ter entre 3 e 255 caracteres',
             },
