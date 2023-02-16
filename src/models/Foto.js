@@ -1,5 +1,7 @@
 import Sequelize, { Model } from 'sequelize';
 
+import config from '../config/app';
+
 export default class Foto extends Model {
   static init(sequelize) {
     super.init(
@@ -18,9 +20,16 @@ export default class Foto extends Model {
             msg: 'O Campo originalName não pode ser vazio',
           },
         },
+        url: {
+          type: Sequelize.VIRTUAL,
+          get() {
+            return `${config.url}/images/${this.getDataValue('filename')}`;
+          },
+        },
       },
       {
         sequelize,
+        tableName: 'fotos',
       },
     );
 
