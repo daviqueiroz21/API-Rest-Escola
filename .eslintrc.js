@@ -20,5 +20,6 @@ module.exports = {
     'no-empty-function': 'off',
     'no-unused-vars': 'off',
     camelcase: 'off',
+    'import/order': 'off',
   },
 };
